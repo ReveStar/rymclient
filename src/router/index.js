@@ -1,10 +1,11 @@
+import { useMainStore } from "@/stores/main";
 import { createRouter, createWebHistory } from "vue-router";
 import DefaultLayout from "../layouts/default.vue";
 import Apply from "../views/apply/index.vue";
 import CourseItems from "../views/Index.vue";
 import My from "../views/my/index.vue";
 import Setting from "../views/setting/index.vue";
-import Index from "../views/wx.vue";
+import Wx from "../views/wx.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,7 +43,7 @@ const router = createRouter({
     {
       path: "/index",
       name: "index",
-      component: Index,
+      component: Wx,
     },
     {
       path: "/login",
@@ -50,6 +51,21 @@ const router = createRouter({
       component: () => import("../views/login/index.vue"),
     },
   ],
+});
+
+router.beforeEach(async (to, from, next) => {
+  const mainStore = useMainStore();
+  if (
+    to.name !== "login" &&
+    to.name !== "index" &&
+    to.name !== "apply" &&
+    mainStore.getToken === ""
+  ) {
+    console.log("to.path", to.path);
+    next(`/index?redirect=${to.path}`);
+  } else {
+    next();
+  }
 });
 
 export default router;

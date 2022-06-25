@@ -11,12 +11,10 @@ const mainStore = useMainStore();
 const router = useRouter();
 const query = router.currentRoute.value.query;
 let code = query.code === undefined ? null : query.code;
-console.log(code);
-code = "011tUe000Bjs2O14ek100zEN300tUe07";
+let redirect = query.redirect;
 if (code == null || code === "") {
   getWxCode();
 } else {
-  console.log("finish get wx code");
   mainStore
     .getInfoByCode({ code: code })
     .then((response) => {
@@ -25,7 +23,7 @@ if (code == null || code === "") {
         const uri = "/login?name=" + response.open_id;
         router.push({ path: uri });
       } else {
-        router.push({ path: "/" });
+        router.push({ path: redirect || "/" });
       }
     })
     .catch((err) => {

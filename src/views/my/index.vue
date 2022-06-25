@@ -93,7 +93,6 @@ let infos = ref(null);
 getStudentInfo(listQuery)
   .then((resp) => {
     infos.value = resp.students;
-    console.log(infos);
   })
   .catch((err) => {
     console.log(err);

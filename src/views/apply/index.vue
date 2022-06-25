@@ -62,7 +62,6 @@ let subjects = ref(null);
 fetchSubjectList()
   .then((resp) => {
     subjects.value = resp.subjects;
-    console.log(subjects);
   })
   .catch((err) => {
     console.log(err);
@@ -79,7 +78,7 @@ const applySubject = (subject) => {
         Toast({
           message: "报名信息已提交",
           type: "info",
-          duration: 5 * 1000,
+          duration: 2 * 1000,
         });
       }
     });

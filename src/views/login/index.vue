@@ -125,7 +125,7 @@ const router = useRouter();
 //   phone: [{ required: true, trigger: "blur", validator: validatePhone }],
 // };
 const handleLogin = () => {
-  loginForm.open_id = router.currentRoute.value.query;
+  loginForm.open_id = router.currentRoute.value.query.open_id;
   loginForm.code = loginForm.code === null ? "" : loginForm.code.toString();
   mainStore.login(loginForm).then(() => {
     router.push({ path: "/" });
@@ -138,7 +138,7 @@ const getCode = () => {
       Toast({
         message: "验证码已发送",
         type: "info",
-        duration: 5 * 1000,
+        duration: 2 * 1000,
       });
     }
   });

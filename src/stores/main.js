@@ -1,27 +1,19 @@
 import { defineStore } from "pinia";
 import { getInfoByCode, login } from "../composables/auth";
 
-export const useMainStore = defineStore({
-  id: "main",
-  state: () => ({
-    token: "",
-    role: "student",
-    account_id: "",
-    username: "",
-  }),
+export const useMainStore = defineStore("main", {
+  state: () => {
+    return {
+      token: "",
+      role: "student",
+      account_id: "",
+      username: "",
+    };
+  },
   getters: {
     getToken: (state) => state.token,
     getAccountId: (state) => state.account_id,
     getRole: (state) => state.role,
-  },
-  persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: "main_store",
-        storage: localStorage,
-      },
-    ],
   },
   actions: {
     async login(loginForm) {
@@ -30,6 +22,7 @@ export const useMainStore = defineStore({
           .then((resp) => {
             this.token = resp.token;
             this.account_id = resp.account_id;
+            this.role = resp.roles[0];
             resolve();
           })
           .catch((err) => {
@@ -45,9 +38,10 @@ export const useMainStore = defineStore({
             if (needBind) {
               resolve(response);
             } else {
-              const { username, account_id } = response.account_info;
+              const { username, account_id, roles } = response.account_info;
               this.username = username;
               this.account_id = account_id;
+              this.role = roles[0];
               this.token = response.token;
               resolve(response);
             }

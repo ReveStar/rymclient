@@ -7,6 +7,7 @@ export interface LoginParam {
     phone: string
     code: string
     type: number
+    open_id: string
 }
 
 export const login = async (params:LoginParam) => { 
@@ -39,10 +40,18 @@ export const getInfoByCode = async (data) => {
   
 
 export const getWxCode = async() => {
-    const redirectURL = encodeURIComponent("http://ehdzwd.natappfree.cc" + '/')
+    const redirectURL = encodeURIComponent(location.origin + '/index')
     const base = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=`
     window.location.href = base + AppId +
         `&redirect_uri=` + redirectURL +
         `&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`
+}
+
+export const getUserInfo = async(data) => {
+    return api({
+        url: 'user/info',
+        method: 'get',
+        params: data
+    })
 }
 

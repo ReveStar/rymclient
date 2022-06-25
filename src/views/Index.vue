@@ -67,7 +67,6 @@ const courses = ref(null);
 onMounted(
   fetchCourseList()
     .then((result) => {
-      console.log(result);
       courses.value = result.courses;
     })
     .catch((err) => {
