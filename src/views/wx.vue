@@ -20,8 +20,8 @@ if (code == null || code === "") {
     .then((response) => {
       const needBind = response.need_bind;
       if (needBind) {
-        const uri = "/login?name=" + response.open_id;
-        router.push({ path: uri });
+        const uri = "/login";
+        router.push({ path: uri, query: { name: response.open_id } });
       } else {
         router.push({ path: redirect || "/" });
       }

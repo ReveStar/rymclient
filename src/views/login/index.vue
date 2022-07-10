@@ -104,7 +104,6 @@ const loginForm = reactive({
   open_id: "",
 });
 const router = useRouter();
-
 // const validateUsername = (rule, value, callback) => {
 //   if (value.length <= 0) {
 //     callback(new Error("请输入姓名"));
@@ -125,7 +124,7 @@ const router = useRouter();
 //   phone: [{ required: true, trigger: "blur", validator: validatePhone }],
 // };
 const handleLogin = () => {
-  loginForm.open_id = router.currentRoute.value.query.open_id;
+  loginForm.open_id = router.currentRoute.value.query.name;
   loginForm.code = loginForm.code === null ? "" : loginForm.code.toString();
   mainStore.login(loginForm).then(() => {
     router.push({ path: "/" });

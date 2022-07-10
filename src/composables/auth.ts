@@ -1,6 +1,6 @@
 import api from "./request"
 
-const AppId = 'wxd9f1d7d25401aabc'
+const AppId = 'wx73d2dbd39ff54f88'
 
 export interface LoginParam {
     username: string
