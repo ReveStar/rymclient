@@ -40,6 +40,12 @@
             </dd>
           </div>
           <div class="bg-gray-50 px-4 py-2 grid grid-cols-3 gap-4">
+            <dt class="text-sm font-medium text-gray-500 col-auto">课时</dt>
+            <dd class="text-sm text-gray-900 col-span-2">
+              {{ course.school_hour }}
+            </dd>
+          </div>
+          <div class="bg-white px-4 py-2 grid grid-cols-3 gap-4">
             <dt class="text-sm font-medium text-gray-500 col-auto">教练</dt>
             <dd class="text-sm text-gray-900 col-span-2">
               {{ course.teacher }}
