@@ -49,7 +49,7 @@
               v-model="loginForm.code"
               id="number"
               name="code"
-              type="number"
+              type="input"
               autocomplete="code"
               required="true"
               class="appearance-none rounded-l-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:z-10 sm:text-sm"
@@ -99,7 +99,7 @@ const mainStore = useMainStore();
 const loginForm = reactive({
   username: "",
   phone: "",
-  code: null,
+  code: "",
   type: 2,
   open_id: "",
 });
@@ -125,7 +125,7 @@ const router = useRouter();
 // };
 const handleLogin = () => {
   loginForm.open_id = router.currentRoute.value.query.name;
-  loginForm.code = loginForm.code === null ? "" : loginForm.code.toString();
+  // loginForm.code = loginForm.code === null ? "" : loginForm.code.toString();
   mainStore.login(loginForm).then(() => {
     router.push({ path: "/" });
   });
