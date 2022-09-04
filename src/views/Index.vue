@@ -51,10 +51,33 @@
               {{ course.teacher }}
             </dd>
           </div>
-          <div class="bg-gray-50 px-4 py-2 grid grid-cols-3 gap-4">
+          <div
+            v-if="course.class != ''"
+            class="bg-white px-4 py-2 grid grid-cols-3 gap-4"
+          >
+            <dt class="text-sm font-medium text-gray-500 col-auto">班级</dt>
+            <dd class="text-sm text-gray-900 col-span-2">
+              {{ course.class }}
+            </dd>
+          </div>
+          <div
+            v-if="role === 'student'"
+            class="bg-gray-50 px-4 py-2 grid grid-cols-3 gap-4"
+          >
             <dt class="text-sm font-medium text-gray-500 col-auto">学生</dt>
             <dd class="text-sm text-gray-900 col-span-2">
               {{ course.student }}
+            </dd>
+          </div>
+          <div
+            v-if="role === 'teacher'"
+            class="bg-gray-50 px-4 py-2 grid grid-cols-3 gap-4"
+          >
+            <dt class="text-sm font-medium text-gray-500 col-auto">学生</dt>
+            <dd class="text-sm text-gray-900 col-span-2">
+              <span v-for="stu in course.class_students" :key="stu">
+                {{ stu }}&nbsp;&nbsp;
+              </span>
             </dd>
           </div>
         </dl>
@@ -68,7 +91,9 @@ import { ref, onMounted } from "vue";
 import DisClosure from "@/components/DisClosure.vue";
 import { fetchCourseList } from "@/composables/course";
 import { parseTime } from "@/util";
-
+import { useMainStore } from "@/stores/main";
+const mainStore = useMainStore();
+const role = mainStore.getRole;
 const courses = ref(null);
 onMounted(
   fetchCourseList()
