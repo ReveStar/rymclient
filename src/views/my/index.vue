@@ -47,7 +47,7 @@
                 {{ info.course_free }}
               </dd>
             </div>
-            <div class="bg-white px-4 py-2 grid grid-cols-3 gap-4">
+            <div class="bg-gray px-4 py-2 grid grid-cols-3 gap-4">
               <dt class="text-sm font-medium text-gray-500 col-auto">总费用</dt>
               <dd class="text-sm text-gray-900 col-span-2">
                 {{ info.charge_all }}
@@ -61,7 +61,7 @@
                 {{ info.charge_deli }}
               </dd>
             </div>
-            <div class="bg-white px-4 py-2 grid grid-cols-3 gap-4">
+            <div class="bg-gray px-4 py-2 grid grid-cols-3 gap-4">
               <dt class="text-sm font-medium text-gray-500 col-auto">状态</dt>
               <dd class="text-sm text-gray-900 col-span-2">
                 {{ info.status }}
