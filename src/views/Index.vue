@@ -52,30 +52,12 @@
             </dd>
           </div>
           <div
-            v-if="course.class != ''"
-            class="bg-white px-4 py-2 grid grid-cols-3 gap-4"
-          >
-            <dt class="text-sm font-medium text-gray-500 col-auto">班级</dt>
-            <dd class="text-sm text-gray-900 col-span-2">
-              {{ course.class }}
-            </dd>
-          </div>
-          <div
-            v-if="role === 'student'"
-            class="bg-gray-50 px-4 py-2 grid grid-cols-3 gap-4"
-          >
-            <dt class="text-sm font-medium text-gray-500 col-auto">学生</dt>
-            <dd class="text-sm text-gray-900 col-span-2">
-              {{ course.student }}
-            </dd>
-          </div>
-          <div
             v-if="role === 'teacher'"
             class="bg-gray-50 px-4 py-2 grid grid-cols-3 gap-4"
           >
             <dt class="text-sm font-medium text-gray-500 col-auto">学生</dt>
             <dd class="text-sm text-gray-900 col-span-2">
-              <span v-for="stu in course.class_students" :key="stu">
+              <span v-for="stu in course.students" :key="stu">
                 {{ stu }}&nbsp;&nbsp;
               </span>
             </dd>
